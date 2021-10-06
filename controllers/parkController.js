@@ -55,7 +55,7 @@ router.put('/:id/users/:userId', (req, res, next) => {
 		.then(() => {
 			User.findByIdAndUpdate(
 				req.params.userId,
-				{ $push: { parksSeen: req.params.id } },
+				{ $push: { 'myParks.parksSeen': req.params.id } },
 				{ new: true }
 			).then(() => res.json(updatedPark));
 		})

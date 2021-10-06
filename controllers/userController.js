@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 router.get('/', (req, res, next) => {
 	User.find({})
-		.populate('myParks')
+		.populate('myParks.park')
 		.then((users) => res.json(users))
 		.catch(next);
 });

@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-// require restaurant model
+// require park model
 const Park = require('./../models/park');
 
 // CREATE

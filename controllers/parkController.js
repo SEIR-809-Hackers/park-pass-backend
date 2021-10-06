@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Park= require('../models/park');
+const Park = require('../models/park');
 const User = require('../models/user.js');
 
 // INDEX
@@ -40,7 +40,6 @@ router.patch('/:id', (req, res, next) => {
 		.catch(next);
 });
 
-
 // add user to users array
 // PUT
 router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
@@ -54,34 +53,33 @@ router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 			updatedPark = park;
 		})
 		.then(() => {
-			User.findByIdAndUpdate(req.params.userId,
-				{ $push: { myParks : req.params.id} },
+			User.findByIdAndUpdate(
+				req.params.userId,
+				{ $push: { myParks: req.params.id } },
 				{ new: true }
 			).then(() => res.json(updatedPark));
 		})
 		.catch(next);
 });
 
-
 // add user to users array
 // PUT /park/:parkID/users/:userID
-// router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
-// 	let updatedPark;
-// 	Park.findByIdAndUpdate(
-// 		req.params.id,
-// 	)
-// 		.then((park) => {
-// 			updatedPark = park;
-// 		})
-// 		.then(() => {
-// 			User.findByIdAndUpdate(
-// 				req.params.userId,
-// 				{$set: { updatedPark.seen : true} },
-// 				{ new: true }
-// 			).then(() => res.json(updatedPark));
-// 		})
-// 		.catch(next);
-// });
+router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
+	let updatedPark;
+	Park.findById(req.params.id)
+		.then((park) => {
+			updatedPark = park;
+		})
+		.then(() => {
+			User.updateOne(
+				{ 'myParks._id': req.params.id },
+				{ $set: { 'myParks.$.seen': true } },
+				{ new: true }
+			).then(() => res.json(updatedPark));
+		})
+		.catch(next);
+});
+
 // DESTROY
 // DELETE /parks/:id
 router.delete('/:id', (req, res, next) => {

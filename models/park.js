@@ -8,7 +8,7 @@ const parkSchema = new mongoose.Schema({
 	ParkLocation: String,
 	reviews: [Review],
 	users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-});
+}, {strict: false});
 
 const Park = mongoose.model('Park', parkSchema)
 

@@ -40,27 +40,6 @@ router.patch('/:id', (req, res, next) => {
 		.catch(next);
 });
 
-// add user to users array
-// PUT
-// router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
-// 	let updatedPark;
-// 	Park.findByIdAndUpdate(
-// 		req.params.id,
-// 		{ $push: { users: req.params.userId } },
-// 		{ new: true }
-// 	)
-// 		.then((park) => {
-// 			updatedPark = park;
-// 		})
-// 		.then(() => {
-// 			User.findByIdAndUpdate(
-// 				req.params.userId,
-// 				{ $push: { myParks: req.params.id } },
-// 				{ new: true }
-// 			).then(() => res.json(updatedPark));
-// 		})
-// 		.catch(next);
-// });
 
 router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 	let updatedPark;
@@ -82,28 +61,13 @@ router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 		.catch(next);
 });
 
-// add user to users array
-// PUT /park/:parkID/users/:userID
-// router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
-// 	let updatedPark;
-// 	Park.findById(req.params.id)
-// 		.then((park) => {
-// 			updatedPark = park;
-// 		})
-// 		.then(() => {
-// 			User.updateOne(
-// 				{ 'myParks._id': req.params.id },
-// 				{ $set: { 'myParks.$.seen': true } },
-// 				{ new: true }
-// 			).then(() => res.json(updatedPark));
-// 		})
-// 		.catch(next);
-// });
 
 router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
+			// find the park with the correct id match
 			const parkToUpdate = user.myParks.find((x) => x.park == req.params.id);
+			// update the seen property
 			parkToUpdate.seen = true;
 			return user.save();
 		})

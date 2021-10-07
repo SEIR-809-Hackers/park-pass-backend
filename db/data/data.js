@@ -1,7 +1,7 @@
 const fs = require('fs');
 const axios = require('axios');
 
-url = `https://developer.nps.gov/api/v1/parks?api_key=uDMFcggPK0EXdo1IqTFhAxh6jz2NXc0DoNEoa9t7`;
+url = `https://developer.nps.gov/api/v1/parks?api_key=${process.env.API_KEY}`;
 class FormatData {
 	constructor(data) {
 		console.log(data);

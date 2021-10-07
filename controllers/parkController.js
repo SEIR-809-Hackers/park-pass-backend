@@ -101,20 +101,14 @@ router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 // });
 
 router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
-	User.findOneAndUpdate(
-		{ _id: req.params.userId, 'myParks.park._id': req.params.id },
-		{ $set: { 'myParks.$.seen': true } },
-		{ new: true }
-	)
+	User.findById(req.params.userId)
+		.then((user) => {
+			const parkToUpdate = user.myParks.find((x) => x.park == req.params.id);
+			parkToUpdate.seen = true;
+			return user.save();
+		})
 		.then((user) => res.json(user))
 		.catch(next);
-	// User.findById(req.params.userId)
-	// .then((user) => {
-	// 	const parkToUpdate = user.myParks.find(obj => obj.park._id === req.params.id);
-	// 	console.log(user.myParks);
-	// 	parkToUpdate.seen = true;
-	// 	return user.save();
-	// }).then((user) => res.json(user)).catch(next);
 })
 
 // DESTROY

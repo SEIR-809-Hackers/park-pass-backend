@@ -45,7 +45,7 @@ router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 	let updatedPark;
 	Park.findByIdAndUpdate(
 		req.params.id,
-		{ $push: { users: req.params.userId } },
+		{ $addToSet: { users: req.params.userId } },
 		{ new: true }
 	)
 		.then((park) => {
@@ -54,7 +54,7 @@ router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 		.then(() => {
 			User.findByIdAndUpdate(
 				req.params.userId,
-				{ $push: { myParks: { park: req.params.id, seen: false } } },
+				{ $addToSet: { myParks: { park: req.params.id, seen: false } } },
 				{ new: true }
 			).then(() => res.json(updatedPark));
 		})

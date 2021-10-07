@@ -7,8 +7,7 @@ Park.deleteMany({})
 	.then(() => {
 		// create a new User
 		User.create({ name: 'Test' })
-			.then(user)
 			.then(() => {
-				Bookmark.insertMany(parkSeeds);
+				Park.insertMany(parkSeeds);
 			});
 	});

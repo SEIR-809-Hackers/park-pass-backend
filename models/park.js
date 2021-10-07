@@ -2,14 +2,15 @@ const mongoose = require('../db/connection');
 const Review = require('./review').schema;
 
 const parkSchema = new mongoose.Schema({
-	ParkName: String,
-	ParkDetails: String,
-	ParkImage: String,
-	ParkLocation: String,
+	parkName: String,
+	parkDetails: String,
+	images: [],
+	parkLocation: String,
 	reviews: [Review],
+	activities: [],
 	users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-}, {strict: false});
+});
 
-const Park = mongoose.model('Park', parkSchema)
+const Park = mongoose.model('Park', parkSchema);
 
- module.exports = Park
+module.exports = Park;

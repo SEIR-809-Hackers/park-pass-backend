@@ -9,6 +9,12 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
+router.get('/:id', (req, res, next) => {
+	User.findById(req.params.id)
+		.then((user) => res.status(200).json(user))
+		.catch(next);
+});
+
 router.post('/', (req, res, next) => {
 	User.create(req.body)
 		.then((user) => res.status(201).json(user))

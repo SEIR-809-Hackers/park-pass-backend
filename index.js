@@ -18,6 +18,11 @@ app.use(express.json());
 //  adds it to the request object as request.body
 app.use(express.urlencoded({ extended: true }));
 
+// Log each request as it comes in for debugging
+const requestLogger = require('./middleware/request_logger');
+app.use(requestLogger);
+
+
 //=============================================================================
 // ROUTES
 //=============================================================================

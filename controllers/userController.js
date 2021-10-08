@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+// Require the createUserToken method
+const { createUserToken } = require('../middleware/auth');
 
 router.get('/', (req, res, next) => {
 	User.find({})
@@ -41,6 +43,15 @@ router.post('/signup', (req, res, next) => {
 
 // SIGN IN
 // POST /api/signin
-router.post('/signin', (req, res, next) => {});
+router.post('/signin', (req, res, next) => {
+  User.findOne({ username: req.body.username })
+    // Pass the user and the request to createUserToken
+    .then((user) => createUserToken(req, user))
+    // createUserToken will either throw an error that
+    // will be caught by our error handler or send back
+    // a token that we'll in turn send to the client.
+    .then((token) => res.json({ token }))
+    .catch(next);
+});
 
 module.exports = router;

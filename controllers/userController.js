@@ -4,6 +4,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 // Require the createUserToken method
 const { createUserToken } = require('../middleware/auth');
+const { requireToken } = require('../middleware/auth');
 
 router.get('/', (req, res, next) => {
 	User.find({})

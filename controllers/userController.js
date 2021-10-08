@@ -19,7 +19,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/:username', requireToken, (req, res, next) => {
-	User.findById(req.params.id)
+	User.findOne({username: req.params.username})
 		.then((user) => res.status(200).json(user))
 		.catch(next);
 });

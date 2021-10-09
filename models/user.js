@@ -4,6 +4,11 @@ const Park = require('./park.js').schema;
 
 const UserSchema = new mongoose.Schema(
 	{
+		email: {
+			type: String,
+			required: true,
+			unique: true,
+		},
 		username: {
 			type: String,
 			required: true,

@@ -2,38 +2,20 @@
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user.js');
+const { Strategy, ExtractJwt } = require('passport-jwt');
 
-// Create a secret to be used to encrypt/decrypt the token
-// This can be any string value you want -- even gibberish.
 const secret =
 	process.env.JWT_SECRET || 'secret';
 
-// Require the specific `strategy` we'll use to authenticate
-// Require the method that will handle extracting the token
-// from each of the requests sent by clients
-const { Strategy, ExtractJwt } = require('passport-jwt');
 
-// Minimum required options for passport-jwt
 const opts = {
-	// How passport should find and extract the token from
-	// the request.  We'll be sending it as a `bearer` token
-	// when we make requests from our front end.
 	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-	// Any secret string to use that is unique to your app
-	// We should store this in an environment variable so it
-	// isn't ever pushed to GitHub!
 	secretOrKey: secret,
 };
 
-// Require the user model
-const User = require('../models/user.js');
-
-// We're configuring the strategy using the constructor from passport
-// so we call new and pass in the options we set in the `opts` variable.
-// Then we pass it a callback function that passport will use when we call
-// this as middleware.  The callback will be passed the data that was
-// extracted and decrypted by passport from the token that we get from
-// the client request!  This data (jwt_payload) will include the user's id!
+// Using strategy in order to make a request to the backend for the users information
+// jwt_payload is passed into the callback function and this is used to extract the user via ID
 const strategy = new Strategy(opts, function (jwt_payload, done) {
 	// In the callback we run our custom code. With the data extracted from
 	// the token that we're passed as jwt_payload we'll have the user's id.

@@ -43,7 +43,7 @@ router.patch('/:id', requireToken, (req, res, next) => {
 });
 
 
-router.put('/wantToSee/:id/users/:userId', requireToken, (req, res, next) => {
+router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 	let updatedPark;
 	Park.findByIdAndUpdate(
 		req.params.id,
@@ -64,7 +64,7 @@ router.put('/wantToSee/:id/users/:userId', requireToken, (req, res, next) => {
 });
 
 
-router.put('/parksSeen/:id/users/:userId', requireToken, (req, res, next) => {
+router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
 			// find the park with the correct id match
@@ -78,7 +78,7 @@ router.put('/parksSeen/:id/users/:userId', requireToken, (req, res, next) => {
 })
 
 // DELETE /parks/:id
-router.delete('/:id', requireToken, (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
 	const id = req.params.id;
 	Park.findOneAndDelete({ _id: id })
 		.then(() => res.sendStatus(204))

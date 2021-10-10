@@ -13,13 +13,13 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-	User.findById(req.params.id)
-		.then((user) => res.status(200).json(user))
-		.catch(next);
-});
+// router.get('/:id', (req, res, next) => {
+// 	User.findById(req.params.id)
+// 		.then((user) => res.status(200).json(user))
+// 		.catch(next);
+// });
 
-router.get('/:username', requireToken, (req, res, next) => {
+router.get('/:username', (req, res, next) => {
 	User.findOne({username: req.params.username})
 		.then((user) => res.status(200).json(user))
 		.catch(next);

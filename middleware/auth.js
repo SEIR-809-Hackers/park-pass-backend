@@ -41,7 +41,7 @@ passport.use(strategy);
 passport.initialize();
 
 // Create a variable that holds the authenticate method so we can
-// export it for use in our routes
+
 const requireToken = passport.authenticate('jwt', { session: false });
 
 // Create a function that takes the request and a user document

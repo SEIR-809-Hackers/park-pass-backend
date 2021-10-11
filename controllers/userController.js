@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/getById/:id', (req, res, next) => {
 	User.findById(req.params.id)
 		.populate('myParks.park')
 		.then((user) => res.status(200).json(user))
@@ -21,7 +21,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 
-router.get('/:username', (req, res, next) => {
+router.get('/getByUsername/:username', (req, res, next) => {
 	User.findOne({username: req.params.username})
 		.populate('myParks.park')
 		.then((user) => res.status(200).json(user))

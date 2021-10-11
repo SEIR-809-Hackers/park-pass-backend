@@ -43,7 +43,7 @@ router.patch('/:id', requireToken, (req, res, next) => {
 });
 
 
-router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
+router.put('/wantToSee/:id/users/:userId', requireToken, (requireToken, req, res, next) => {
 	let updatedPark;
 	Park.findByIdAndUpdate(
 		req.params.id,
@@ -64,7 +64,7 @@ router.put('/wantToSee/:id/users/:userId', (req, res, next) => {
 });
 
 
-router.put('/parksSeen/:id/users/:userId', (req, res, next) => {
+router.put('/parksSeen/:id/users/:userId', requireToken, (requireToken, req, res, next) => {
 	User.findById(req.params.userId)
 		.then((user) => {
 			// find the park with the correct id match

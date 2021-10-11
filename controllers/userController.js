@@ -13,14 +13,17 @@ router.get('/', (req, res, next) => {
 		.catch(next);
 });
 
-// router.get('/:id', (req, res, next) => {
-// 	User.findById(req.params.id)
-// 		.then((user) => res.status(200).json(user))
-// 		.catch(next);
-// });
+router.get('/:id', (req, res, next) => {
+	User.findById(req.params.id)
+		.populate('myParks.park')
+		.then((user) => res.status(200).json(user))
+		.catch(next);
+});
+
 
 router.get('/:username', (req, res, next) => {
 	User.findOne({username: req.params.username})
+		.populate('myParks.park')
 		.then((user) => res.status(200).json(user))
 		.catch(next);
 });
@@ -51,14 +54,11 @@ router.post('/signup', (req, res, next) => {
 
 // SIGN IN
 // POST /api/signin
-router.post('/signin', (req, res, next) => {
-  User.findOne({ username: req.body.username })
+router.post('/signin', async (req, res, next) => {
+  	let user = await User.findOne({ username: req.body.username })
     // Pass the user and the request to createUserToken
-    .then((user) => createUserToken(req, user))
-    // createUserToken will either throw an error that
-    // will be caught by our error handler or send back
-    // a token that we'll in turn send to the client.
-    .then((token) => res.json({ token }))
+    let token = createUserToken(req, user);
+    res.json({ token, id : user._id })
     .catch(next);
 });
 

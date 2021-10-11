@@ -6,10 +6,11 @@ Park.deleteMany({})
 	.then(() => User.deleteMany({}))
 	.then(() => {
 		// create a new User
-		User.create({ name: 'Test' })
+		User.create({ 
+			email: "test@email.com",
+			username: 'test',
+			password: "mypassword" })
 			.then(() => {
 				Park.insertMany(parkSeeds);
 			});
 	});
-
-	// comment

@@ -35,6 +35,7 @@ router.post('/signup', (req, res, next) => {
 			// need to wrap the object in parentheses so JS doesn't
 			// read the object curly braces as the function block
 			({
+				email: req.body.email,
 				username: req.body.username,
 				password: hash,
 			})

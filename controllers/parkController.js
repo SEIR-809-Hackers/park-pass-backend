@@ -76,6 +76,35 @@ router.put('/parksSeen/:id/users/:userId', requireToken, (requireToken, req, res
 		.then((user) => res.json(user))
 		.catch(next);
 })
+// delete parks from user Parks array
+router.delete(
+	'/deletePark/:id/users/:userId',
+	requireToken,
+	async (requireToken, req, res, next) => {
+		let user = await User.findById(req.params.userId)
+		// find the park with the correct id match
+		const parksToSave = user.myParks.filter(park => park.park != req.params.id);
+		// update the seen property
+		// parkToUpdate.seen = true;
+		// user.pull({_id: parkToDelete._id })
+		user.myParks = parksToSave;
+		user.save();
+		res.json(user)
+			
+	}
+);
+
+// DELETE /reviews/:id
+router.delete('/:id', (req, res, next) => {
+	const id = req.params.id;
+	Park.findOne({ 'reviews._id': id })
+		.then((park) => {
+			park.reviews.id(id).remove();
+			return park.save();
+		})
+		.then(() => res.sendStatus(204))
+		.catch(next);
+});
 
 // DELETE /parks/:id
 router.delete('/:id', (req, res, next) => {

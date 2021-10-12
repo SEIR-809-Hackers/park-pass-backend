@@ -3,12 +3,12 @@ A backend API for our parksPass website.
 
 a) Description:
 
-ParkPass is a full-stack application that allows a user to search through a database of national parks and save them. When saved, a park will be added to a user’s page and displayed as a card. Users can then check off if they’ve hiked at the selected park and add a review of their experience, which can be created, edited, and deleted. 
+ParkPass is a full-stack application that allows a user to search through a database of national parks and save them. When saved, a park will be added to a user’s page and displayed. Users can then check off if they’ve hiked at the selected park and add a review of their experience, which can be created, edited, and deleted. 
 
 
 b) Brief Example:
 
-Click any of the navigation buttons on the app to find a list of parks, or sign up to create your own list of parks you’ve already visited.
+You begin your park adventure by clicking the explore button, which will take you to a list of natural parks in the US, you can click a Park from the list and add it to your personal pass, but in order to do this, you need first to sign up, of course in the “sing up button” and then login. Then in your “My Park Pass” can see your parks, and click if you have hailed, and you can also delete a park from your Pass.
 
 
 c) List of Features / User Stories:

@@ -13,25 +13,24 @@ You begin your park adventure by clicking the explore button, which will take yo
 
 c) List of Features / User Stories:
 
- --- MVP: 
+  --- MVP: 
 “As a user, I would like to be able to see a list of national parks, with a brief description on the location so I can browse the collection” 
 “As a user, I would like to be able to use my ParkPass to add parks that I would like to hike at.”
 “As a user, I would like to mark off parks I have hiked at.”
-“As a user, I would like to be able to provide reviews for the parks I’ve hiked.”
+"As a user, I would like to get a “Things To Do” List for specific things I can do at the park and add these to my own Activities list for better planning."
 
 
 ---Bronze: 
 As a user, I would like to be able to get information on the campgrounds within the park in order to better plan my trip. 
 As a user, I would like to be able to get a list of recommended activities to do within the park (astronomy, hiking, wildlife watching, etc.) in order to better understand what type of events each destination offers. 
-
+“As a user, I would like to be able to provide reviews for the parks I’ve hiked.”
 ---Silver: 
-As a user, I would like to get a “Things To Do” List for specific things I can do at the park and add these to my own Activities list for better planning. 
+
 
 ---Gold:
 As a user, I would like to be able to log in to my own personal PassPark account so that I can have a personal profile. 
 As a user, I would like to be able to track my miles hiked and have a graph display the data.
 As a user, I would like to be able to see live footage of the campgrounds in order to virtually experience what it would like to be there. 
-
 
 
 d) List of Technologies Used:

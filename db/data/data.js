@@ -1,7 +1,9 @@
 const fs = require('fs');
 const axios = require('axios');
 
-url = `https://developer.nps.gov/api/v1/parks?api_key=${process.env.API_KEY}`;
+let url = `https://developer.nps.gov/api/v1/parks?limit=200&api_key=Ixd6D7hQEZULXirk4Fgnho7gALMb7WsV2rRLLpe`;
+let newUrl = "https://developer.nps.gov/api/v1/parks?limit=100&api_key=dIxd6D7hQEZULXirk4Fgnho7gALMb7WsV2rRLLpe"
+// api_key=dIxd6D7hQEZULXirk4Fgnho7gALMb7WsV2rRLLpe
 class FormatData {
 	constructor(data) {
 		console.log(data);
@@ -29,7 +31,7 @@ class FormatData {
 }
 
 axios
-	.get(url)
+	.get(newUrl)
 	.then((res) => {
 		let results = res.data.data; // array of parks [{park}, {park}, {}]
 		let data;

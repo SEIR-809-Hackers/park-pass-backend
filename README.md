@@ -17,7 +17,27 @@ b) Brief Example:
     
 
 e) Installation Instructions / Getting Started:
-  Routes
+  - Fork and clone this repo using either the SSH Key or HTTPS
+  - In your terminal type: 
+  ```
+  git clone [your-key-here]
+  ```
+  Move into the folder that is downloaded: park-pass-backend
+  ```
+  cd park-pass-backend
+  
+  ```
+  Run: 
+  ```
+  npm init -y
+  npm install 
+  ```
+  Open the file in order to view the files.
+  
+  MongoDB: 
+  This project using the mongoDB server to host itself. If you would like to replicate the project and run it on your local machine, an account on MongoDB and a server key would be required. Follow the instructions here to get set up with a MongoDB Account: https://docs.atlas.mongodb.com/getting-started/
+  
+ ### Making Requests
   
  ### Base Route: https://fast-springs-20221.herokuapp.com/
  ### Relevent Routes: 
@@ -138,7 +158,19 @@ const parkURL = 'https://fast-springs-20221.herokuapp.com/parks';
 }]
 ```
 
-- Example Call for Users
+- POST Parks 
+```
+let url = `https://fast-springs-20221.herokuapp.com/parks`;
+
+const res = await fetch(url, {
+	'Content-Type': 'application/json',
+	method: 'POST',
+	})
+
+
+```
+
+- Example GET Call for Users
 ```
 const parkURL = 'https://fast-springs-20221.herokuapp.com/users';
 		fetch(parkURL)

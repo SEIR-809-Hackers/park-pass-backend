@@ -19,12 +19,13 @@ b) Brief Example:
 e) Installation Instructions / Getting Started:
   Routes
   
- ### Base Route: 
- Parks: 
+ ### Base Route: https://fast-springs-20221.herokuapp.com/
+ ### Relevent Routes: 
+- Parks: 
  - https://fast-springs-20221.herokuapp.com/parks
- Users:
+- Users:
  -https://fast-springs-20221.herokuapp.com/users
- Review:
+- Review:
  - Reviews are not rendered individually, but associated with an individual park.
  
 ## All Routes: 
